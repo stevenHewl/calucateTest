@@ -43,6 +43,47 @@ public class juzhen {
 
     public static void main(String[] args) {
         int mat[][] = new int[][] {{1,0,1},{1,1,0},{1,1,0}};
-        numSubmat(mat);
+        //numSubmat(mat);
+
+        int indeices[][] = new int[][]{{0,1},{1,1}};
+        oddCells(2,3, indeices);
+    }
+
+    public static int oddCells(int m, int n, int[][] indices) {
+        if (indices == null || indices.length <= 0 ){
+            return 0;
+        }
+        if (m == 0 && n == 0){
+            return 0;
+        }
+        int jz[][] = new int[m][n];
+        int r = 0;
+        for(int[] a : indices){
+            if (a[0] < m){
+                int i = 0;
+                while (i < n){
+                    jz[a[0]][i] += 1;
+                    if (jz[a[0]][i] > 0 && (jz[a[0]][i] == 1 || jz[a[0]][i] % 2 == 1)){
+                        r++;
+                    } else {
+                        r--;
+                    }
+                    i++;
+                }
+            }
+            if (a[1] < n){
+                int j = 0;
+                while (j < m){
+                    jz[j][a[1]] += 1;
+                    if (jz[j][a[1]] > 0 && (jz[j][a[1]] == 1 || jz[j][a[1]] % 2 == 1)){
+                        r++;
+                    } else {
+                        r--;
+                    }
+                    j++;
+                }
+            }
+        }
+        return r;
     }
 }
