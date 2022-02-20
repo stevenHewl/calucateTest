@@ -15,19 +15,6 @@ public class stepGame {
         int n = jump(nums);
         System.out.println("n:" + n);
     }
-
-    public String largestOddNumber(String num) {
-        int l = num.length();
-        for(int i = l-1; i >= 0; i--){
-            int cr = Integer.valueOf(num.charAt(i));
-            if (cr % 2 != 0){
-                return num.substring(0, i+1);
-            }
-        }
-        return "";
-    }
-
-
     public static int jump(int[] nums) {
         int index = 0;
         int loopn = 0;
@@ -54,4 +41,16 @@ public class stepGame {
         }
         return indexNew;
     }
+
+    public String largestOddNumber(String num) {
+        int l = num.length();
+        for(int i = l-1; i >= 0; i--){
+            int cr = Integer.valueOf(num.charAt(i));
+            if (cr % 2 != 0){
+                return num.substring(0, i+1);
+            }
+        }
+        return "";
+    }
+
 }
