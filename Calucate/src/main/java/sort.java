@@ -1,7 +1,7 @@
 public class sort {
 
 	public static void main(String[] args) {
-		int num[] = {45,28,80,90,50,16,100,10};
+		int num[] = {45,28,80,90,50,16,100,10,33,18};
 		//mpsort(num);
 		qsort(num, 0, num.length - 1);
 	}
@@ -36,11 +36,10 @@ public class sort {
 			System.out.print(num[i] + " ");
 		}
 		System.out.println();
-
-		if (ll > left) {
+		if ((ll-1) > left) {
 			qsort(num, left, ll - 1);
 		}
-		if (rr < right) {
+		if ((ll + 1) < right) {
 			qsort(num, ll + 1, right);
 		}
 	}
