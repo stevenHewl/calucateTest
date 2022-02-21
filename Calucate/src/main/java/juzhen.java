@@ -49,6 +49,7 @@ public class juzhen {
         oddCells(2,3, indeices);
     }
 
+    // 矩阵行列加1，求奇数 个数
     public static int oddCells(int m, int n, int[][] indices) {
         if (indices == null || indices.length <= 0 ){
             return 0;

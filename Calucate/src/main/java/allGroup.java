@@ -13,7 +13,7 @@ import java.util.List;
 public class allGroup {
     static List<List<Integer>> resultList = new ArrayList<List<Integer>>(); // 结果
     static LinkedList<Integer> path = new LinkedList<Integer>(); // 一次排列结果，长度应该登录数组长度
-    static boolean[] used; // 标识是否已在排列中使用了
+    static boolean used[] ; // 标识是否已在排列中使用了
 
     public static List<List<Integer>> permute(int[] nums) {
         if (nums.length == 0)
