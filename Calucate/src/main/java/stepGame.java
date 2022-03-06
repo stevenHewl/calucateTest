@@ -12,9 +12,7 @@ public class stepGame {
 	public static void main(String[] args) {
 		int a[] = {1, 1, 2};
 		//int r = countTz(a);
-
 		int t[] = dailyTemperatures(new int[]{89,62,70,58,47,47,46,76,100,70});
-
 		int nums[] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 0};//{2,3,1,1,0};
 		//int n = jump(nums);
 		System.out.println("n:" + Arrays.toString(t));
@@ -30,34 +28,22 @@ public class stepGame {
 		return loopn;
 	}
 
-	private static int getStep(int index, int[] nums) {
+	private static int getStep(int index, int[] nums){
 		int n = nums[index];
 		int maxIndex = 0;
 		int indexNew = 0;
-		for (int i = 1; i <= n; i++) {
+		for (int i = 1; i <= n; i++){
 			int j = index + i;
-			if (j >= (nums.length - 1)) {
+			if (j >= (nums.length - 1)){
 				indexNew = nums.length - 1;
 				return indexNew;
 			}
-			if (maxIndex < i + nums[j]) {
+			if (maxIndex < i + nums[j]){
 				maxIndex = i + nums[j];
 				indexNew = j;
 			}
 		}
 		return indexNew;
-	}
-
-	// 获取最大奇数
-	public String largestOddNumber(String num) {
-		int l = num.length();
-		for (int i = l - 1; i >= 0; i--) {
-			int cr = Integer.valueOf(num.charAt(i));
-			if (cr % 2 != 0) {
-				return num.substring(0, i + 1);
-			}
-		}
-		return "";
 	}
 
 	public static int countTz(int[] answers) {
@@ -104,4 +90,15 @@ public class stepGame {
 		}
 		return answer;
 	}
+
+    public String largestOddNumber(String num) {
+        int l = num.length();
+        for(int i = l-1; i >= 0; i--){
+            int cr = Integer.valueOf(num.charAt(i));
+            if (cr % 2 != 0){
+                return num.substring(0, i+1);
+            }
+        }
+        return "";
+    }
 }
