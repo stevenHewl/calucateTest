@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /*
 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
@@ -15,6 +12,7 @@ public class allGroup {
     static LinkedList<Integer> path = new LinkedList<Integer>(); // 一次排列结果，长度应该登录数组长度
     static boolean used[] ; // 标识是否已在排列中使用了
 
+    // 方法一
     public static List<List<Integer>> permute(int[] nums) {
         if (nums.length == 0)
             return resultList;
@@ -51,6 +49,30 @@ public class allGroup {
             used[i] = false;
         }
     }
+
+    // 全排列 方法二
+    public static void perm(int[] array, Stack<Integer> stack) {
+        if(array.length <= 0) {
+            //进入了叶子节点，输出栈中内容
+            System.out.println(stack);
+        } else {
+            for (int i = 0; i < array.length; i++) {
+                //tmepArray是一个临时数组，用于就是Ri
+                //eg：1，2，3的全排列，先取出1，那么这时tempArray中就是2，3
+                int[] tempArray = new int[array.length-1];
+                // 取i之前的元素到tempArray中
+                System.arraycopy(array,0,tempArray,0,i);
+                // 取i之后的元素到tempArray中
+                System.arraycopy(array,i+1,tempArray,i,array.length-i-1);
+                stack.push(array[i]);
+
+                perm(tempArray,stack);
+
+                stack.pop();
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         int nums[] = {1,1,2};
