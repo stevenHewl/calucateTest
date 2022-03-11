@@ -1,19 +1,20 @@
 import java.util.*;
 
-// 字符串反转
+
 public class strTest {
     public static void main(String[] args) {
         String s = "(ed(et(oc))el)";
         String r = reverseParentheses(s);
         System.out.println(r);
 
-        test();
+        //test();
 
-        int num[] = {6,3,5};
-        Arrays.sort(num);
-        //countTriplets(num);
+        int num[] = {2,3,1,6,7};  //{6,3,5};
+        //Arrays.sort(num);
+        countTriplets(num);
     }
 
+    // 字符串反转
     public static String reverseParentheses(String s) {
         Deque<String> stack = new LinkedList<>();
         StringBuilder sb = new StringBuilder();
@@ -32,24 +33,31 @@ public class strTest {
         return sb.toString();
     }
 
-    // 是a == b
+    /*
+    给你一个整数数组 arr 。
+    现需要从数组中取三个下标 i、j 和 k ，其中 (0 <= i < j <= k < arr.length) 。
+    a 和 b 定义如下：
+    a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1]
+    b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]
+    注意：^ 表示 按位异或 操作。
+
+    请返回能够令 a == b 成立的三元组 (i, j , k) 的数目。
+
+    首先，数组长度小于 2 的时候，必然是 0。其次，观察到 a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1], b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]，
+    那么根据位运算的规则， a^b=arr[i]^ arr[i + 1] ^ ... ^ arr[k]，即 i 到 k。
+    此外，根据位运算，如果 a^b==0，那么 a==b，这是逆否命题，即反推也成立。
+    而固定了两端之后，中间的j可以任意取，故有 k-i 种。每次计算完，如果满足条件，在 ans 里加上 k-i即可。
+     */
     public static int countTriplets(int[] arr) {
         int n = arr.length;
+        if (n < 2) return 0;
         int ans = 0;
         for (int i = 0; i < n; i++) {
+            int t = arr[i];
             for (int j = i + 1; j < n; j++) {
-                for (int k = j; k < n; k++) {
-                    int a = 0, b = 0;
-                    for (int x = i; x < j; x++) {
-                        a ^= arr[x];
-                    }
-                    for (int y = j; y <= k; y++) {
-                        b ^= arr[y];
-                    }
-                    if (a == b) {
-                        ans++;
-                        System.out.println(a);
-                    }
+                t ^= arr[j];
+                if (t == 0){
+                    ans += j-i;
                 }
             }
         }
@@ -59,7 +67,7 @@ public class strTest {
 
 
     public static void test(){
-        int n = 4;
+        int n = 3;
         int num[] = {6,3,5};
         Arrays.sort(num);
 
